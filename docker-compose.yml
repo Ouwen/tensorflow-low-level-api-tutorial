@@ -1,0 +1,16 @@
+version: '2'
+services: 
+  jupyter:
+    image: gcr.io/tensorflow/tensorflow:latest
+    volumes:
+      - $PWD:/notebooks
+    ports:
+      - 8888:8888
+
+  tensorboard:
+    image: gcr.io/tensorflow/tensorflow:latest
+    volumes:
+      - $PWD/notebooks/logs:/logs
+    ports:
+      - 6006:6006
+    command: tensorboard --logdir="/logs"
